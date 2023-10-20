@@ -1,0 +1,11 @@
+<ul>
+{% for object in object_list %}
+    <li>
+        <a href={% url "student:detail" object.id %}>
+            {{ object.name }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+{% comment %} ({{ object.student_id }}) &lt;{{ object.email }}&gt; {% endcomment %}

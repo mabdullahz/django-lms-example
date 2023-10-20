@@ -1,0 +1,6 @@
+<ul>
+    {% for object in object_list %}
+        <li>{{ object.course.code }} ({{ object.student.student_id }}) &lt;{{ object.enrollment_date }}&gt;</li>
+    {% endfor %}
+</ul>
+    
