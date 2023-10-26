@@ -1,0 +1,21 @@
+body {
+    background-color: rgb(234, 204, 234);
+}
+
+
+header, footer {
+    padding: 10px 20px;
+    background-color: lightgray;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

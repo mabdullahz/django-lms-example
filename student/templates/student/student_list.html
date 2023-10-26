@@ -1,13 +1,38 @@
-<a href={% url "student:logout" %} > Logout </a>
+{% load static %}
 
-<ul>
-{% for object in object_list %}
-    <li>
-        <a href={% url "student:detail" object.id %}>
-            {{ object.name }}
-        </a>
-    </li>
-{% endfor %}
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>All Students</title>
+        
+        <link rel="stylesheet" href={% static "student/style.css" %}>
+    </head>
+<body>
+    <header>
+        <nav>
+            <div>KS LMS</div>
+            <a href={% url "student:logout" %} > Logout </a>
+        </nav>
+    </header>
 
-{% comment %} ({{ object.student_id }}) &lt;{{ object.email }}&gt; {% endcomment %}
+    <main>
+        <ul>
+        {% for object in object_list %}
+            <li>
+                <a href={% url "student:detail" object.id %}>
+                    {{ object.name }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </main>
+
+    <footer>
+        <nav>
+            <p>@Copyright KS.tech</p>
+        </nav>
+    </footer>
+</body>
+</html>
