@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.views import generic
 
 from .models import Student
@@ -10,8 +13,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
 
-class IndexView(generic.ListView):
-    model = Student
+# class IndexView(generic.ListView):
+#     model = Student
 
     # # default -> student/student_list.html
     # template_name = "student/index.html"
@@ -19,8 +22,14 @@ class IndexView(generic.ListView):
     # # default -> "object_list"
     # context_object_name = "students"
 
+@login_required(login_url="/s/login/")
+def index(request):
+    students = Student.objects.all()
+    return render(request, "student/student_list.html", {"object_list": students})
 
-class DetailView(generic.DetailView):
+
+class DetailView(LoginRequiredMixin, generic.DetailView):
+    login_url = "/s/login/"
     model = Student
 
 
