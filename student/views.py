@@ -16,7 +16,14 @@ from django.contrib.auth import authenticate, login, logout
 def index(request):
     if request.user.is_authenticated:
         students = Student.objects.all()
-        return render(request, "student/student_list.html", {"object_list": students})
+
+        num_visits = request.session.get('num_visits', 0)
+        request.session['num_visits'] = num_visits + 1
+
+        return render(request, "student/student_list.html", {
+            "object_list": students,
+            "session": request.session,
+        })
     return redirect(reverse('student:login'))
 
 

@@ -18,6 +18,9 @@
             </li>
         {% endfor %}
         </ul>
+        {% for key, value in session.items %}
+            {{key}}: {{value}} <br/>
+        {% endfor %}
     </main>
 
     <footer>
