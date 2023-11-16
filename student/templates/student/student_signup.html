@@ -1,3 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block links_block %}
+    <link rel="stylesheet" href={% static "student/style.css" %}>
+{% endblock links_block %}
+{% block title_block %} Student Signup {% endblock title_block %}
+
+{% block body_block %}
+{% include "student/partials/header.html" %}
 <h1> Register </h1>
 <form action="{% url 'student:sign_up' %}" method="post">
     {% csrf_token %}
@@ -14,3 +24,6 @@
     <input type="password" value="" name="password"> <br/><br/>
     <input type="submit" value="Register" id="register">
 </form>
+
+<a href="{% url 'student:login' %}"> Login </a>
+{% endblock body_block %}

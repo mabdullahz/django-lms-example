@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -12,24 +12,17 @@ from .models import Student
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
-
-# class IndexView(generic.ListView):
-#     model = Student
-
-    # # default -> student/student_list.html
-    # template_name = "student/index.html"
-
-    # # default -> "object_list"
-    # context_object_name = "students"
-
-@login_required(login_url="/s/login/")
+# @login_required(login_url=reverse_lazy('student:login'))
 def index(request):
-    students = Student.objects.all()
-    return render(request, "student/student_list.html", {"object_list": students})
+    if request.user.is_authenticated:
+        students = Student.objects.all()
+        return render(request, "student/student_list.html", {"object_list": students})
+    return redirect(reverse('student:login'))
 
 
 class DetailView(LoginRequiredMixin, generic.DetailView):
     login_url = "/s/login/"
+    context_object_name = "student"
     model = Student
 
 

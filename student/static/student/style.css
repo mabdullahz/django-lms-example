@@ -5,7 +5,7 @@ body {
 
 header, footer {
     padding: 10px 20px;
-    background-color: lightgray;
+    background-color: green;
 }
 
 header nav {
@@ -18,4 +18,18 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
+}
+
+.one {
+    background-color: aqua;
+}
+
+.two {
+    background-color:mediumturquoise;
+}
+.three {
+    background-color:coral;
+}
+.four {
+    background-color:lawngreen;
 }

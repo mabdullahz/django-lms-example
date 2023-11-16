@@ -1,28 +1,19 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>All Students</title>
-        
-        <link rel="stylesheet" href={% static "student/style.css" %}>
-    </head>
-<body>
-    <header>
-        <nav>
-            <div>KS LMS</div>
-            <a href={% url "student:logout" %} > Logout </a>
-        </nav>
-    </header>
+{% block links_block %}
+    <link rel="stylesheet" href={% static "student/style.css" %}>
+{% endblock links_block %}
+{% block title_block %} Students list {% endblock title_block %}
 
+{% block body_block %}
+{% include "student/partials/header.html" %}
     <main>
         <ul>
         {% for object in object_list %}
-            <li>
+            <li class="{% cycle 'one' 'two' 'three' 'four' %}">
                 <a href={% url "student:detail" object.id %}>
-                    {{ object.name }}
+                    {{ object.name|title }}
                 </a>
             </li>
         {% endfor %}
@@ -34,5 +25,4 @@
             <p>@Copyright KS.tech</p>
         </nav>
     </footer>
-</body>
-</html>
+{% endblock body_block %}
